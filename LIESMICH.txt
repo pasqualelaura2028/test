@@ -1,0 +1,14 @@
+Bilder der Webseite
+===================
+paar.jpg          Foto im Goldkranz (Startseite) und gross auf der Karte im Couvert
+marke.jpg         Briefmarke auf der Vorderseite des Couverts
+hg-start.jpg      heller Foto-Hintergrund: Couvert, Sprachwahl, Gästecode, Startseite
+hg-programm.jpg   heller Foto-Hintergrund: Programm
+hg-anmeldung.jpg  heller Foto-Hintergrund: Anmeldung
+vorschau.jpg      Bild, das WhatsApp beim Teilen des Links zeigt (1200 x 630)
+
+Alle aus den Originalen in 06_Bilder_Original gemacht, ohne Metadaten.
+Fehlt eine Datei, zeigt die Webseite an dieser Stelle einfach kein Foto.
+Neue Bilder zuerst in TEST/bilder, dann mit TEST_nach_PROD_uebernehmen.command nach PROD.
+Diesen Ordner immer zusammen mit index.html hochladen.
+Achtung: Sobald die Seite online ist, kann jeder diese Bilder sehen, der die Adresse kennt.
