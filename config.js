@@ -14,7 +14,7 @@
    ===================================================================== */
 window.PL_CONFIG = {
   UMGEBUNG: 'TEST',
-  API_URL: '',
+  API_URL: 'https://script.google.com/macros/s/AKfycbwJXGfrY2pf8kuj6JdEL73zhaj2S40SxOtfgSKgm39_8cCHqE0GTAGz398571Y0uU1y3A/exec',
   NAME_1: 'Pasquale',
   NAME_2: 'Laura'
 };
