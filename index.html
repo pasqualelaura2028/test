@@ -1050,6 +1050,7 @@ async function demoApi(action, p){
 }
 
 /* ---------- Server-Verbindung ---------- */
+const NUR_ANSEHEN = 'Auf der Test-Webseite kann man nur ansehen. Ändern bitte in der Verwaltung der richtigen Webseite.';
 async function api(action, payload){
   payload = payload || {};
   if (DEMO) return demoApi(action, payload);
@@ -1059,11 +1060,13 @@ async function api(action, payload){
     const res = await fetch(CONFIG.API_URL, {
       method:'POST', redirect:'follow',
       headers:{ 'Content-Type':'text/plain;charset=utf-8' },
-      body: JSON.stringify(Object.assign({ action }, payload)),
+      body: JSON.stringify(Object.assign({ action, env: String(CONFIG.UMGEBUNG || '').trim().toUpperCase() }, payload)),
       signal: ctrl ? ctrl.signal : undefined
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    return await res.json();
+    const j = await res.json();
+    if (j && j.error === 'test_site') j.message = NUR_ANSEHEN;
+    return j;
   } finally { if (timer) clearTimeout(timer); }
 }
 
@@ -1236,7 +1239,7 @@ function googleCalUrl(){
 function calendarHtml(){
   if (!calEvent()) return '';
   const ics = DEMO ? 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsText())
-    : CONFIG.API_URL + '?ics=1&lang=' + S.lang + (S.code ? '&code=' + encodeURIComponent(S.code) : S.token ? '&r=' + encodeURIComponent(S.token) : '');
+    : CONFIG.API_URL + '?ics=1&lang=' + S.lang + (S.code ? '&code=' + encodeURIComponent(S.code) : S.token ? '&r=' + encodeURIComponent(S.token) : '') + (CONFIG.UMGEBUNG ? '&env=' + encodeURIComponent(String(CONFIG.UMGEBUNG).toUpperCase()) : '');
   return '<div class="cal"><span class="cal-label">' + esc(t('calLabel')) + '</span><div class="actions">' +
     '<a class="btn btn-sm btn-ghost" href="' + esc(ics) + '"' + (DEMO ? ' download="hochzeit.ics"' : '') + ' data-cal="ics">' + icon('calendar') + esc(t('calApple')) + '</a>' +
     '<a class="btn btn-sm btn-ghost" href="' + esc(googleCalUrl()) + '" target="_blank" rel="noopener" data-cal="google">' + icon('calendar') + esc(t('calGoogle')) + '</a></div></div>';
@@ -1292,6 +1295,8 @@ function envState(){
   const sheet = (S.content && S.content.settings && S.content.settings.env) || (S.admin && S.admin.data && S.admin.data.status && S.admin.data.status.env) || '';
   if (cfg === 'TEST' && sheet === 'prod') return { cls: 'warn', text: 'Achtung: Diese TEST-Webseite ist mit dem PROD-Sheet verbunden. Mails gehen an echte Gäste. Bitte API_URL in TEST/config.js prüfen.' };
   if (cfg === 'PROD' && sheet === 'test') return { cls: 'warn', text: 'Achtung: Diese PROD-Webseite ist mit dem TEST-Sheet verbunden. Bitte API_URL in PROD/config.js prüfen.' };
+  const draft = S.content && S.content.settings && S.content.settings.draft;
+  if (cfg === 'TEST' && draft) return { cls: 'test', text: 'TEST · nichts wird gespeichert' };
   if (cfg === 'TEST' || sheet === 'test') return { cls: 'test', text: 'TEST' };
   return null;
 }
@@ -1876,7 +1881,8 @@ function adminOverview(){
   const max = Math.max(1, ...s.menu.map(m => m.count));
   const days = daysUntil(st.date);
   const status = [];
-  if (st.env === 'test') status.push(['warn', 'TEST-Umgebung: Alle Mails gehen nur an ' + ((st.testTo || []).join(', ') || 'niemanden (im Sheet bei Test_Empfaenger eine Adresse eintragen)') + ', mit [TEST] im Betreff. Gäste bekommen nichts.']);
+  if (st.testSeite) status.push(['warn', 'Test-Webseite: Sie zeigt den aktuellen Stand der Tabelle, die Gäste sehen davon noch nichts. Hier kann man nur ansehen, Formulare speichern nichts und es gehen keine Mails raus. Für die Gäste freigeben: in der Tabelle 💍 Hochzeit → Prodwebseite aktualisieren.']);
+  else if (st.env === 'test') status.push(['warn', 'TEST-Umgebung: Alle Mails gehen nur an ' + ((st.testTo || []).join(', ') || 'niemanden (im Sheet bei Test_Empfaenger eine Adresse eintragen)') + ', mit [TEST] im Betreff. Gäste bekommen nichts.']);
   status.push(['ok', st.mail === 'brevo' ? 'E-Mails gehen über Brevo raus.' : 'E-Mails gehen über Gmail raus. Heute noch ' + st.quota + ' Empfänger möglich, der Rest wird am nächsten Tag automatisch verschickt.']);
   if (st.queue) status.push(['warn', st.queue + ' E-Mail(s) warten im Postausgang und gehen automatisch raus, sobald wieder Kontingent frei ist.']);
   if (st.teamWa) status.push(['ok', (st.teamWa === 1 ? '1 Person im Team bekommt' : st.teamWa + ' Personen im Team bekommen') + ' WhatsApp-Nachrichten bei neuen Anmeldungen.']);
@@ -2080,21 +2086,21 @@ function bindAdmin(){
     const mode = A.modeConfirm; A.modeBusy = true; render({ keepScroll: true });
     try {
       const r = await api('adminSetMode', { adminCode: A.code, mode });
-      if (!r.ok) throw new Error(r.error);
+      if (!r.ok) throw new Error(r.message || r.error);
       A.data = r; S.content = null;
       const n = r.invites ? (r.invites.sent || 0) + (r.invites.queued || 0) : 0;
       A.modeMsg = mode === 'invite' ? 'Umgestellt auf «Einladung».' + (n ? ' ' + n + ' Einladung(en) per Mail verschickt.' : '') : 'Umgestellt auf «Save the Date».';
-    } catch(e){ A.modeMsg = 'Das hat nicht geklappt. Bitte nochmals versuchen.'; }
+    } catch(e){ A.modeMsg = e.message === NUR_ANSEHEN ? NUR_ANSEHEN : 'Das hat nicht geklappt. Bitte nochmals versuchen.'; }
     A.modeBusy = false; A.modeConfirm = null; render({ keepScroll: true });
   });
   const saveRel = async (k, v) => {
     A.relBusy = k; render({ keepScroll: true });
     try {
       const r = await api('adminSetShow', { adminCode: A.code, key: k, value: v });
-      if (!r.ok) throw new Error(r.error);
+      if (!r.ok) throw new Error(r.message || r.error);
       A.data = r; S.content = null; A.relDate[k] = false;
       toast('Gespeichert: ' + REL.find(x => x[0] === k)[1] + (v === 'Ja' ? ' ist sichtbar' : v === 'Nein' ? ' ist ausgeblendet' : v === 'Hochzeitstag' ? ' ab dem Hochzeitstag' : ' ab ' + fmtDate(v)));
-    } catch(e){ toast('Das hat nicht geklappt. Bitte nochmals versuchen.'); }
+    } catch(e){ toast(e.message === NUR_ANSEHEN ? NUR_ANSEHEN : 'Das hat nicht geklappt. Bitte nochmals versuchen.'); }
     A.relBusy = null; render({ keepScroll: true });
   };
   $$('[data-rel]').forEach(sel => sel.addEventListener('change', () => {
