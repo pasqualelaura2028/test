@@ -170,6 +170,21 @@ button{font:inherit}
 .tl-desc{margin-top:8px;color:var(--ink-2)}
 @media (max-width:480px){.tl-item{grid-template-columns:3.7rem minmax(0,1fr);gap:0 14px}.tl-time{font-size:1.15rem;padding-top:.15em}.tl-body{padding-left:18px}.tl-body.has-ic{padding-left:28px}.tl-body h3{font-size:1.4rem}}
 .travel-note{max-width:62ch;margin:32px auto 0;text-align:center;color:var(--ink-2)}
+/* Programm über mehrere Tage (Vorabend) */
+.tl-day{text-align:center;margin:56px auto 28px;display:grid;gap:8px;justify-items:center}
+.sec-head + .tl-day{margin-top:0}
+.tl-day h3{font-size:clamp(1.5rem,3.6vw,1.9rem);line-height:1.2}
+/* Dresscode */
+.dress{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));max-width:760px;margin:0 auto}
+.dress-day{background:var(--card);border:1px solid var(--rule);padding:28px 24px;text-align:center;display:grid;gap:10px;align-content:start}
+.dress-txt{font-family:var(--f-display);font-size:1.45rem;line-height:1.3}
+.dress-one{font-family:var(--f-display);font-size:1.35rem;line-height:1.4}
+/* Kontakt */
+.grid.people{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+@media (min-width:700px){.grid.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:820px;margin-inline:auto}}
+.person-card{text-align:center;justify-items:center}
+.person-card .actions{justify-content:center}
+.person-card .btn .ic{width:16px;height:16px}
 
 /* Menükarte */
 .menu-card{max-width:540px;margin:0 auto;background:var(--card);border:1px solid var(--gold);outline:1px solid var(--rule);outline-offset:-10px;padding:clamp(40px,7vw,64px) clamp(22px,6vw,52px);text-align:center;display:grid;gap:24px}
@@ -603,11 +618,14 @@ const T = {
     gateEyebrow:'Herzlich willkommen', gateText:'Bitte gib den Gästecode von deiner Einladung ein.', codeLabel:'Gästecode', enter:'Eintreten',
     wrongCode:'Dieser Code stimmt nicht. Schau nochmals auf deiner Einladung nach.', demoGate:'Demo: Der Gästecode ist {code}.',
     loading:'Einen Moment …', loadError:'Die Seite konnte nicht geladen werden. Prüfe deine Internetverbindung und versuche es nochmals.', retry:'Nochmals versuchen',
-    navNews:'Neuigkeiten', navProgram:'Programm', navTravel:'Anfahrt', navStay:'Unterkunft', navFood:'Menü', navRsvp:'Anmeldung', navGifts:'Geschenke', navPhotos:'Fotos', navFaq:'Gut zu wissen',
+    navNews:'Neuigkeiten', navProgram:'Programm', navTravel:'Anfahrt', navStay:'Unterkunft', navFood:'Menü', navRsvp:'Anmeldung', navGifts:'Geschenke', navPhotos:'Fotos', navFaq:'Gut zu wissen', navDress:'Dresscode', navSights:'Ausflüge', navPeople:'Kontakt',
     weMarry:'Wir heiraten', days:'Tage', hours:'Stunden', minutes:'Minuten', seconds:'Sekunden', today:'Heute ist der grosse Tag!', past:'Danke, dass ihr mit uns gefeiert habt!',
     rsvpNow:'Jetzt anmelden', rsvpBy:'Bitte antworte bis {date}', newLabel:'Neu',
     newsEyebrow:'Aktuell', newsTitle:'Neuigkeiten',
-    programEyebrow:'Der Tag', programTitle:'Programm',
+    programEyebrow:'Der Tag', programTitle:'Programm', programEyebrowDays:'Die Festtage', dayEve:'Der Vorabend', dayWedding:'Der grosse Tag', dayAfter:'Der Tag danach',
+    dressEyebrow:'Was ziehe ich an?', dressTitle:'Dresscode',
+    sightsEyebrow:'Sehenswürdigkeiten', sightsTitle:'In der Nähe', sightsLead:'Falls ihr ein paar Tage bleibt: Das lohnt sich in der Umgebung.', moreInfo:'Mehr erfahren', onMap:'Auf der Karte',
+    peopleEyebrow:'Fragen?', peopleTitle:'Kontakt', peopleLead:'Bei Fragen sind wir gerne für euch da.', writeMail:'E-Mail',
     travelEyebrow:'So findet ihr hin', travelTitle:'Anfahrt', route:'Route planen', copyAddr:'Adresse kopieren', copied:'Adresse kopiert',
     stayEyebrow:'Übernachten', stayTitle:'Unterkunft', website:'Zur Webseite',
     foodEyebrow:'Zu Tisch', foodTitle:'Das Menü', menuCard:'Menu', foodChoice:'Deine Menüwahl gibst du bei der Anmeldung an.',
@@ -655,11 +673,14 @@ const T = {
     gateEyebrow:'Benvenuti', gateText:"Inserisci il codice ospite che trovi sull'invito.", codeLabel:'Codice ospite', enter:'Entra',
     wrongCode:"Il codice non è corretto. Controlla di nuovo l'invito.", demoGate:'Demo: il codice ospite è {code}.',
     loading:'Un momento …', loadError:'Impossibile caricare la pagina. Controlla la connessione e riprova.', retry:'Riprova',
-    navNews:'Novità', navProgram:'Programma', navTravel:'Come arrivare', navStay:'Alloggi', navFood:'Menù', navRsvp:'Conferma', navGifts:'Regali', navPhotos:'Foto', navFaq:'Buono a sapersi',
+    navNews:'Novità', navProgram:'Programma', navTravel:'Come arrivare', navStay:'Alloggi', navFood:'Menù', navRsvp:'Conferma', navGifts:'Regali', navPhotos:'Foto', navFaq:'Buono a sapersi', navDress:'Dress code', navSights:'Dintorni', navPeople:'Contatti',
     weMarry:'Ci sposiamo', days:'Giorni', hours:'Ore', minutes:'Minuti', seconds:'Secondi', today:'Oggi è il grande giorno!', past:'Grazie di aver festeggiato con noi!',
     rsvpNow:'Conferma la presenza', rsvpBy:'Rispondi entro il {date}', newLabel:'Novità',
     newsEyebrow:'Aggiornamenti', newsTitle:'Novità',
-    programEyebrow:'La giornata', programTitle:'Programma',
+    programEyebrow:'La giornata', programTitle:'Programma', programEyebrowDays:'I giorni di festa', dayEve:'La sera prima', dayWedding:'Il grande giorno', dayAfter:'Il giorno dopo',
+    dressEyebrow:'Cosa indossare?', dressTitle:'Dress code',
+    sightsEyebrow:'Da vedere', sightsTitle:'Nei dintorni', sightsLead:'Se vi fermate qualche giorno: ecco cosa vale la pena vedere nei dintorni.', moreInfo:'Scopri di più', onMap:'Sulla mappa',
+    peopleEyebrow:'Domande?', peopleTitle:'Contatti', peopleLead:'Per qualsiasi domanda siamo a vostra disposizione.', writeMail:'E-mail',
     travelEyebrow:'Come raggiungerci', travelTitle:'Come arrivare', route:'Calcola il percorso', copyAddr:'Copia indirizzo', copied:'Indirizzo copiato',
     stayEyebrow:'Pernottare', stayTitle:'Alloggi', website:'Vai al sito',
     foodEyebrow:'A tavola', foodTitle:'Il menù', menuCard:'Menù', foodChoice:'Potrai scegliere il menù nel modulo di conferma.',
@@ -706,7 +727,7 @@ const T = {
 };
 
 /* ---------- Verwaltung: Freigabe ---------- */
-const REL = [['program','Programm'],['travel','Anfahrt'],['hotels','Unterkunft'],['menu','Menü'],['rsvp','Anmeldung'],['gifts','Geschenke'],['photos','Fotos teilen'],['faq','Fragen & Antworten']];
+const REL = [['program','Programm'],['dress','Dresscode'],['travel','Anfahrt'],['hotels','Unterkunft'],['sights','Sehenswürdigkeiten'],['menu','Menü'],['rsvp','Anmeldung'],['gifts','Geschenke'],['photos','Fotos teilen'],['faq','Fragen & Antworten'],['contact','Kontakt']];
 function releaseBox(){
   const A = S.admin, st = A.data.status, std = st.mode === 'std';
   const show = st.show || {}, from = st.showFrom || {}, raw = st.showRaw || {};
@@ -766,7 +787,7 @@ if (S.lang !== 'de' && S.lang !== 'it') S.lang = 'de';
 if (params.get('lang') === 'de' || params.get('lang') === 'it') { S.lang = params.get('lang'); store.set('pl_lang', S.lang); store.set('pl_lang_set', '1'); }
 S.langChosen = store.get('pl_lang_set') === '1';
 
-function freshRsvp(){ return { id:'', attending:null, name:'', email:'', phone:'', address:'', persons:[{name:'', menu:''}], kids:0, allergies:'', message:'', wa:false }; }
+function freshRsvp(){ return { id:'', attending:null, name:'', email:'', phone:'', address:'', persons:[{name:'', menu:''}], kids:0, allergies:'', stay:'', message:'', wa:false }; }
 function t(key, vars){
   let s = (T[S.lang] && T[S.lang][key]) || T.de[key] || key;
   if (vars) Object.keys(vars).forEach(k => { s = s.split('{' + k + '}').join(vars[k]); });
@@ -814,9 +835,12 @@ const DEMO_CONTENT = { // Platzhalter: Haupttitel echt, Inhalte als Lorem ipsum
     giftsText:{ de:'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', it:'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
     contribution:{ de:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nTWINT: 079 000 00 00\nIBAN: CH00 0000 0000 0000 0000 0', it:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nTWINT: 079 000 00 00\nIBAN: CH00 0000 0000 0000 0000 0' },
     menuChoice:true, menuOptions:{ de:['Lorem ipsum','Dolor sit','Amet consectetur'], it:['Lorem ipsum','Dolor sit','Amet consectetur'] }, photos:true, siteUrl:'', photo:'',
-    mode:'invite', stdText:{ de:'', it:'' }, thanks:{ de:'', it:'' }, maxAdults:4, maxKids:6, lateOpen:true, calLocation:'Lorem ipsum 1, 0000 Dolor'
+    mode:'invite', stdText:{ de:'', it:'' }, thanks:{ de:'', it:'' }, maxAdults:4, maxKids:6, lateOpen:true, calLocation:'Lorem ipsum 1, 0000 Dolor',
+    dress:{ de:'Lorem: ipsum dolor sit\nAmet: consectetur adipiscing', it:'Lorem: ipsum dolor sit\nAmet: consectetur adipiscing' },
+    stayQ:{ de:'Lorem ipsum dolor sit amet?', it:'Lorem ipsum dolor sit amet?' }, stayOptions:{ de:['Lorem','Ipsum','Dolor sit'], it:['Lorem','Ipsum','Dolor sit'] }
   },
   program: [
+    { time:'19:00', day:'2027-06-11', icon:'glasses', title:{ de:'Lorem ipsum dolor', it:'Lorem ipsum dolor' }, place:'Dolor Sit Amet', address:'Sit amet 5, 0000 Dolor', desc:{ de:'Sed do eiusmod tempor incididunt.', it:'Sed do eiusmod tempor incididunt.' } },
     { time:'13:30', icon:'clock', title:{ de:'Lorem ipsum', it:'Lorem ipsum' }, place:'Lorem Ipsum', address:'Lorem ipsum 1, 0000 Dolor', desc:{ de:'Duis aute irure dolor in reprehenderit in voluptate velit esse.', it:'Duis aute irure dolor in reprehenderit in voluptate velit esse.' } },
     { time:'14:00', icon:'rings', title:{ de:'Dolor sit amet', it:'Dolor sit amet' }, place:'Lorem Ipsum', address:'Lorem ipsum 1, 0000 Dolor', desc:{ de:'', it:'' } },
     { time:'15:30', icon:'glasses', title:{ de:'Consectetur adipiscing', it:'Consectetur adipiscing' }, place:'Dolor Sit Amet', address:'Sit amet 5, 0000 Dolor', desc:{ de:'Sed do eiusmod tempor incididunt ut labore.', it:'Sed do eiusmod tempor incididunt ut labore.' } },
@@ -846,11 +870,22 @@ const DEMO_CONTENT = { // Platzhalter: Haupttitel echt, Inhalte als Lorem ipsum
     { q:{ de:'Sed do eiusmod tempor?', it:'Sed do eiusmod tempor?' }, a:{ de:'Duis aute irure dolor in reprehenderit in voluptate velit esse.', it:'Duis aute irure dolor in reprehenderit in voluptate velit esse.' } },
     { q:{ de:'Ut enim ad minim veniam?', it:'Ut enim ad minim veniam?' }, a:{ de:'Lorem ipsum dolor sit amet: 079 000 00 00.', it:'Lorem ipsum dolor sit amet: 079 000 00 00.' } }
   ],
+  sights: [
+    { name:'Lorem Ipsum', place:'Dolor', distance:'20 km', desc:{ de:'Duis aute irure dolor in reprehenderit in voluptate velit esse.', it:'Duis aute irure dolor in reprehenderit in voluptate velit esse.' }, link:'' },
+    { name:'Dolor Sit', place:'Amet', distance:'35 km', desc:{ de:'Consectetur adipiscing elit, sed do eiusmod tempor.', it:'Consectetur adipiscing elit, sed do eiusmod tempor.' }, link:'' },
+    { name:'Consectetur', place:'Adipiscing', distance:'50 km', desc:{ de:'Ut enim ad minim veniam, quis nostrud.', it:'Ut enim ad minim veniam, quis nostrud.' }, link:'' }
+  ],
+  people: [
+    { name:'Lorem Ipsum', role:{ de:'Braut', it:'Sposa' }, phone:'+41 79 000 00 01', email:'' },
+    { name:'Dolor Sit', role:{ de:'Bräutigam', it:'Sposo' }, phone:'+41 79 000 00 02', email:'' },
+    { name:'Amet Consectetur', role:{ de:'Trauzeugin', it:'Testimone' }, phone:'+41 79 000 00 03', email:'' },
+    { name:'Adipiscing Elit', role:{ de:'Trauzeuge', it:'Testimone' }, phone:'+41 79 000 00 04', email:'' }
+  ],
   news: [
     { date:'2026-10-24', title:{ de:'Lorem ipsum dolor sit amet', it:'Lorem ipsum dolor sit amet' }, text:{ de:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', it:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' } }
   ]
 };
-const DEMO_SHOW = { program:'Ja', travel:'Ja', hotels:'Ja', menu:'Ja', rsvp:'Ja', gifts:'Ja', photos:'Hochzeitstag', faq:'Ja' };
+const DEMO_SHOW = { program:'Ja', travel:'Ja', hotels:'Ja', menu:'Ja', rsvp:'Ja', gifts:'Ja', photos:'Hochzeitstag', faq:'Ja', dress:'Ja', sights:'Ja', contact:'Ja' };
 /** Ja / Nein / Datum / Hochzeitstag → sichtbar heute? (gleiche Regeln wie im Google Script) */
 function relStatus(v, date, today){
   const x = String(v == null ? '' : v).trim();
@@ -872,8 +907,10 @@ function stripHidden(c){
   const sh = c.settings.show, leer = { de:'', it:'' }, st = Object.assign({}, c.settings);
   if (!sh.travel) st.travel = leer;
   if (!sh.gifts) { st.contribution = leer; st.giftsText = leer; }
-  const program = sh.program ? c.program : (sh.travel ? c.program.map(x => ({ time:'', title:x.title, place:x.place, address:x.address, desc:leer })) : []);
-  return Object.assign({}, c, { settings: st, program, hotels: sh.hotels ? c.hotels : [], menu: sh.menu ? c.menu : [], gifts: sh.gifts ? c.gifts : [], faq: sh.faq ? c.faq : [] });
+  if (!sh.dress) st.dress = leer;
+  const program = sh.program ? c.program : (sh.travel ? c.program.map(x => ({ time:'', day:x.day, title:x.title, place:x.place, address:x.address, desc:leer })) : []);
+  return Object.assign({}, c, { settings: st, program, hotels: sh.hotels ? c.hotels : [], menu: sh.menu ? c.menu : [], gifts: sh.gifts ? c.gifts : [], faq: sh.faq ? c.faq : [],
+    sights: sh.sights ? c.sights : [], people: sh.contact ? c.people : [] });
 }
 function demoSeed(){
   const mk = (id, name, email, phone, lang, attending, persons, kids, allergies, wa, message) => ({ id, name, email, phone, lang, attending, persons, kids, allergies: allergies || '', message: message || '', wa, created:'2026-10-20', changed:'2026-10-20' });
@@ -898,11 +935,17 @@ function demoSeed(){
     reserved: { g2:'Anna Meier' }, news: DEMO_CONTENT.news.slice(), photos: 0, show: Object.assign({}, DEMO_SHOW)
   };
 }
+function demoStays(st){ // Beispiel-Antworten auf die Übernachtungsfrage
+  const o = DEMO_CONTENT.settings.stayOptions.de, z = { d1:o[0], d2:o[2], d3:o[1], d5:o[0], d6:o[0] };
+  st.rsvps.forEach(r => { if (r.stay === undefined) r.stay = z[r.id] || ''; });
+  return st;
+}
 let demoState = null;
 function demoLoad(){
   if (demoState) return demoState;
   try { demoState = JSON.parse(store.get('pl_demo_v2') || 'null'); } catch(e){ demoState = null; }
   if (!demoState || !Array.isArray(demoState.rsvps) || !Array.isArray(demoState.contacts)) demoState = demoSeed();
+  demoStays(demoState);
   if (!demoState.show) demoState.show = Object.assign({}, DEMO_SHOW);
   return demoState;
 }
@@ -925,8 +968,8 @@ function namesMenu(persons, opts, kids){
 }
 function kidsDe(k){ return k === 1 ? '1 Kind' : k + ' Kinder'; }
 function stripStd(c){
-  return Object.assign({}, c, { program: [], hotels: [], menu: [], gifts: [], faq: [],
-    settings: Object.assign({}, c.settings, { travel:{ de:'', it:'' }, contribution:{ de:'', it:'' }, giftsText:{ de:'', it:'' } }) });
+  return Object.assign({}, c, { program: [], hotels: [], menu: [], gifts: [], faq: [], sights: [], people: [],
+    settings: Object.assign({}, c.settings, { travel:{ de:'', it:'' }, contribution:{ de:'', it:'' }, giftsText:{ de:'', it:'' }, dress:{ de:'', it:'' } }) });
 }
 function computeAdmin(guests, optsDe, extra){
   const yes = guests.filter(g => g.attending);
@@ -941,8 +984,14 @@ function computeAdmin(guests, optsDe, extra){
     stats: { responses: guests.length, yes: yes.length, no: guests.length - yes.length,
       adults: yes.reduce((a, g) => a + (g.persons || []).length, 0), kids: yes.reduce((a, g) => a + (g.kids || 0), 0),
       persons: yes.reduce((a, g) => a + (g.persons || []).length + (g.kids || 0), 0), menu,
-      allergies: guests.filter(g => g.attending && g.allergies).map(g => ({ name: g.name, text: g.allergies })) }
+      allergies: guests.filter(g => g.attending && g.allergies).map(g => ({ name: g.name, text: g.allergies })), stay: stayStats(guests, DEMO_CONTENT.settings.stayOptions.de) }
   }, extra || {});
+}
+function stayStats(guests, opts){
+  const out = opts.map(label => ({ label, count: 0, persons: 0 })); let none = 0, noneP = 0;
+  guests.filter(g => g.attending).forEach(g => { const i = opts.indexOf(g.stay || ''), n = (g.persons || []).length + (g.kids || 0); if (i >= 0) { out[i].count++; out[i].persons += n; } else { none++; noneP += n; } });
+  if (none) out.push({ label:'Ohne Angabe', count: none, persons: noneP });
+  return out;
 }
 
 async function demoApi(action, p){
@@ -969,7 +1018,7 @@ async function demoApi(action, p){
       if (std && !preview) { c = stripStd(c); c.settings.show = {}; Object.keys(DEMO_SHOW).forEach(k => { c.settings.show[k] = false; }); }
       else if (!preview) c = stripHidden(c);
       c.preview = preview;
-      return { ok:true, content: c, myRsvp: (std && !preview) ? null : (mine || null), preview };
+      return { ok:true, content: c, myRsvp: (std && !preview) ? null : (mine ? Object.assign({}, mine, { stay: DEMO_CONTENT.settings.stayOptions.de.indexOf(mine.stay || '') }) : null), preview };
     }
     case 'rsvp': {
       if (!accessOk && !preview) return { ok:false, error:'code' };
@@ -980,7 +1029,8 @@ async function demoApi(action, p){
       const now = new Date().toISOString().slice(0, 10);
       if (!r) { r = { id: 'd' + Date.now(), created: now }; st.rsvps.push(r); }
       const kids = d.attending ? Math.max(0, Math.min(DEMO_CONTENT.settings.maxKids, Number(d.kids) || 0)) : 0;
-      Object.assign(r, { name:d.name, email:d.email, phone:d.phone, address: d.address || r.address || '', lang:d.lang, attending:!!d.attending, persons: d.attending ? d.persons.slice(0, DEMO_CONTENT.settings.maxAdults) : [], kids, allergies:d.allergies, message:d.message, wa:!!d.wa, changed: now });
+      Object.assign(r, { name:d.name, email:d.email, phone:d.phone, address: d.address || r.address || '', lang:d.lang, attending:!!d.attending, persons: d.attending ? d.persons.slice(0, DEMO_CONTENT.settings.maxAdults) : [], kids, allergies:d.allergies,
+        stay: d.attending && d.stay >= 0 ? (DEMO_CONTENT.settings.stayOptions.de[d.stay] || '') : '', message:d.message, wa:!!d.wa, changed: now });
       demoSave();
       return { ok:true, id:r.id };
     }
@@ -1015,7 +1065,7 @@ async function demoApi(action, p){
       if (String(p.adminCode || '').trim().toUpperCase() !== DEMO_ADMIN) return { ok:false, error:'code' };
       return computeAdmin(st.rsvps, DEMO_CONTENT.settings.menuOptions.de, {
         status: { mail:'gmail', quota: 87, queue: 0, teamWa: 3, teamMail: 4, sheetUrl:'', photosUrl:'', photos: st.photos, siteUrl:'', guestCode: DEMO_CODE, date: DEMO_CONTENT.settings.date, couple: DEMO_CONTENT.settings.couple, deadline: DEMO_CONTENT.settings.deadline, mode: std ? 'std' : 'invite',
-          show: rel.show, showFrom: rel.from, showRaw: rel.raw, photosOn: true },
+          show: rel.show, showFrom: rel.from, showRaw: rel.raw, photosOn: true, stayOn: true },
         contacts: st.contacts.map(c => Object.assign({}, c, { registered: st.rsvps.some(r => r.email.toLowerCase() === c.email.toLowerCase()) })),
         news: st.news
       });
@@ -1529,14 +1579,59 @@ function bindContact(){
 
 /* ---------- Ansicht: Webseite ---------- */
 function uniquePlaces(program){
-  const map = new Map();
+  const map = new Map(), wedding = normIso(S.content && S.content.settings.date);
   (program || []).forEach(p => {
     if (!p.address) return;
     const key = (p.place + '|' + p.address).toLowerCase();
     if (!map.has(key)) map.set(key, { place:p.place, address:p.address, map:p.map, items:[] });
-    map.get(key).items.push(p.time + ' ' + tx(p.title));
+    const other = p.day && normIso(p.day) !== wedding; // Vorabend usw.: Wochentag dazuschreiben
+    map.get(key).items.push((other ? fmtDate(p.day, { weekday:'short', day:undefined, month:undefined, year:undefined }) + ' ' : '') + p.time + ' ' + tx(p.title));
   });
   return Array.from(map.values());
+}
+function dayDiff(a, b){
+  const x = /^(\d{4})-(\d{2})-(\d{2})/.exec(normIso(a)), y = /^(\d{4})-(\d{2})-(\d{2})/.exec(normIso(b));
+  return x && y ? Math.round((Date.UTC(+y[1], +y[2]-1, +y[3]) - Date.UTC(+x[1], +x[2]-1, +x[3])) / 864e5) : null;
+}
+/** Programm: ein Tag wie bisher; mit Vorabend o.ä. (Spalte «Tag») pro Tag eine Überschrift. */
+function programDays(c){
+  const wedding = normIso(c.settings.date), dayOf = p => normIso(p.day) || wedding || '';
+  const days = []; c.program.forEach(p => { const d = dayOf(p); if (days.indexOf(d) < 0) days.push(d); });
+  days.sort();
+  return days.map(d => ({ day: d, items: c.program.filter(p => dayOf(p) === d), label: ({ '-1':'dayEve', '0':'dayWedding', '1':'dayAfter' })[String(dayDiff(wedding, d))] || '' }));
+}
+function programItem(p){
+  const ic = programIcon(p);
+  return '<li class="tl-item"><div class="tl-time">' + esc(p.time) + '</div><div class="tl-body' + (ic ? ' has-ic' : '') + '">' + (ic ? '<span class="tl-ic">' + ic + '</span>' : '') + '<h3>' + esc(tx(p.title)) + '</h3>' +
+    (p.place ? '<p class="meta tl-place">' + esc(p.place) + '</p>' : '') + (tx(p.desc) ? '<p class="tl-desc">' + nl2br(tx(p.desc)) + '</p>' : '') + '</div></li>';
+}
+function programHtml(c){
+  const days = programDays(c), st = c.settings;
+  if (days.length < 2) return secHead(t('programEyebrow'), t('programTitle'), st.date ? fmtDate(st.date, { weekday:'long' }) : '') + '<ol class="timeline">' + c.program.map(programItem).join('') + '</ol>';
+  return secHead(t('programEyebrowDays'), t('programTitle')) + days.map(d => '<div class="tl-day">' + (d.label ? '<p class="eyebrow">' + esc(t(d.label)) + '</p>' : '') +
+    (d.day ? '<h3>' + esc(fmtDate(d.day, { weekday:'long' })) + '</h3>' : '') + '</div><ol class="timeline">' + d.items.map(programItem).join('') + '</ol>').join('');
+}
+/** Dresscode: «Freitag: …» / «Samstag: …» pro Zeile → Karten, sonst ein Satz. */
+function dressHtml(txt){
+  const lines = String(txt).split('\n').map(x => x.trim()).filter(Boolean);
+  const parts = lines.map(l => /^([^:]{1,40}):\s*(.+)$/.exec(l));
+  if (lines.length > 1 && parts.every(Boolean)) return '<div class="dress">' + parts.map(m => '<div class="dress-day"><p class="eyebrow">' + esc(m[1]) + '</p><p class="dress-txt">' + esc(m[2]) + '</p></div>').join('') + '</div>';
+  return '<p class="lead dress-one">' + nl2br(txt) + '</p>';
+}
+function mapsSearch(x){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(x.name + (x.place ? ', ' + x.place : '')); }
+function sightsHtml(list){
+  return '<div class="grid' + (list.length === 2 || list.length === 4 ? ' two' : '') + '">' + list.map(x => '<article class="panel">' + ([x.place, x.distance].filter(Boolean).length ? '<p class="meta">' + esc([x.place, x.distance].filter(Boolean).join(' · ')) + '</p>' : '') + '<h3>' + esc(x.name) + '</h3>' +
+    (tx(x.desc) ? '<p>' + nl2br(tx(x.desc)) + '</p>' : '') + '<div class="actions">' + (x.link ? '<a class="btn btn-sm btn-ghost" href="' + esc(x.link) + '" target="_blank" rel="noopener">' + esc(t('moreInfo')) + icon('arrow') + '</a>' : '') +
+    '<a class="btn btn-sm btn-ghost" href="' + esc(mapsSearch(x)) + '" target="_blank" rel="noopener">' + esc(t('onMap')) + icon('arrow') + '</a></div></article>').join('') + '</div>';
+}
+function peopleHtml(list){
+  return '<div class="grid people">' + list.map(x => {
+    const tel = String(x.phone || '').replace(/[^\d+]/g, ''), wa = waDigits(x.phone);
+    const btns = (tel ? '<a class="btn btn-sm btn-ghost" href="tel:' + esc(tel) + '">' + esc(x.phone) + '</a>' : '') +
+      (wa.length >= 9 ? '<a class="btn btn-sm btn-ghost" href="https://wa.me/' + wa + '" target="_blank" rel="noopener">' + icon('wa') + 'WhatsApp</a>' : '') +
+      (x.email ? '<a class="btn btn-sm btn-ghost" href="mailto:' + esc(x.email) + '">' + icon('mail') + esc(t('writeMail')) + '</a>' : '');
+    return '<article class="panel person-card">' + (tx(x.role) ? '<p class="meta">' + esc(tx(x.role)) + '</p>' : '') + '<h3>' + esc(x.name) + '</h3>' + (btns ? '<div class="actions">' + btns + '</div>' : '') + '</article>';
+  }).join('') + '</div>';
 }
 function routeUrl(pl){ return pl.map || ('https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent((pl.place ? pl.place + ', ' : '') + pl.address)); }
 
@@ -1572,13 +1667,15 @@ function viewSite(){
       '<div class="actions"><a class="btn btn-sm" href="' + esc(routeUrl(pl)) + '" target="_blank" rel="noopener">' + esc(t('route')) + icon('arrow') + '</a><button type="button" class="btn btn-sm btn-ghost" data-copy-addr="' + i + '">' + esc(t('copyAddr')) + '</button></div></article>').join('') + '</div>' : '') +
     (tx(st.travel) ? '<p class="travel-note">' + nl2br(tx(st.travel)) + '</p>' : '') });
 
-  if (c.program.length) blocks.push({ id:'programm', nav:'navProgram', html: secHead(t('programEyebrow'), t('programTitle'), st.date ? fmtDate(st.date, { weekday:'long' }) : '') +
-    '<ol class="timeline">' + c.program.map(p => { const ic = programIcon(p); return '<li class="tl-item"><div class="tl-time">' + esc(p.time) + '</div><div class="tl-body' + (ic ? ' has-ic' : '') + '">' + (ic ? '<span class="tl-ic">' + ic + '</span>' : '') + '<h3>' + esc(tx(p.title)) + '</h3>' +
-      (p.place ? '<p class="meta tl-place">' + esc(p.place) + '</p>' : '') + (tx(p.desc) ? '<p class="tl-desc">' + nl2br(tx(p.desc)) + '</p>' : '') + '</div></li>'; }).join('') + '</ol>' });
+  if (c.program.length) blocks.push({ id:'programm', nav:'navProgram', html: programHtml(c) });
+
+  if (tx(st.dress)) blocks.push({ id:'dresscode', nav:'navDress', html: secHead(t('dressEyebrow'), t('dressTitle')) + dressHtml(tx(st.dress)) });
 
   if (c.hotels.length) blocks.push({ id:'unterkunft', nav:'navStay', html: secHead(t('stayEyebrow'), t('stayTitle')) +
     '<div class="grid">' + c.hotels.map(h => '<article class="panel"><p class="meta">' + esc([h.place, h.distance, h.price].filter(Boolean).join(' · ')) + '</p><h3>' + esc(h.name) + '</h3>' +
       (tx(h.note) ? '<p>' + nl2br(tx(h.note)) + '</p>' : '') + (h.link ? '<div class="actions"><a class="btn btn-sm btn-ghost" href="' + esc(h.link) + '" target="_blank" rel="noopener">' + esc(t('website')) + icon('arrow') + '</a></div>' : '') + '</article>').join('') + '</div>' });
+
+  if (c.sights && c.sights.length) blocks.push({ id:'ausfluege', nav:'navSights', html: secHead(t('sightsEyebrow'), t('sightsTitle'), t('sightsLead')) + sightsHtml(c.sights) });
 
   if (c.menu.length) blocks.push({ id:'menue', nav:'navFood', html: secHead(t('foodEyebrow'), t('foodTitle')) +
     '<div class="menu-card">' + sprigPair() + '<p class="menu-title">' + esc(t('menuCard')) + '</p>' + c.menu.map(m => '<div class="course"><h3>' + esc(tx(m.course)) + '</h3><p>' + nl2br(tx(m.desc)) + '</p></div>').join('') +
@@ -1594,10 +1691,12 @@ function viewSite(){
   if (c.faq.length) blocks.push({ id:'faq', nav:'navFaq', html: secHead(t('faqEyebrow'), t('faqTitle')) +
     '<div class="faq">' + c.faq.map(f => '<details><summary>' + esc(tx(f.q)) + '</summary><div class="ans">' + nl2br(tx(f.a)) + '</div></details>').join('') + '</div>' });
 
+  if (c.people && c.people.length) blocks.push({ id:'ansprechpersonen', nav:'navPeople', html: secHead(t('peopleEyebrow'), t('peopleTitle'), t('peopleLead')) + peopleHtml(c.people) });
+
   // Anmeldung: am Schluss nur ein kurzer Hinweis, das Formular öffnet sich im eigenen Fenster
   blocks.push({ id:'anmeldung', nav:'navRsvp', html: secHead(t('rsvpEyebrow'), t('rsvpTitle'), deadline && !deadlinePassed() && !S.rsvpDone ? t('rsvpIntro', { date: deadline }) : '') + '<div class="rsvp-band" id="rsvpBand">' + rsvpBandInner() + '</div>' });
 
-  const KEY = { programm:'program', anfahrt:'travel', unterkunft:'hotels', menue:'menu', anmeldung:'rsvp', geschenke:'gifts', fotos:'photos', faq:'faq' };
+  const KEY = { programm:'program', anfahrt:'travel', unterkunft:'hotels', menue:'menu', anmeldung:'rsvp', geschenke:'gifts', fotos:'photos', faq:'faq', dresscode:'dress', ausfluege:'sights', ansprechpersonen:'contact' };
   let shown = blocks.filter(b => !KEY[b.id] || canSee(KEY[b.id]));
   if (ph === 'after') shown = shown.filter(b => ['neuigkeiten', 'geschenke', 'fotos'].indexOf(b.id) >= 0);
   shown.forEach(b => { if (KEY[b.id]) b.html = hiddenTag(KEY[b.id]) + b.html; });
@@ -1645,7 +1744,7 @@ function rsvpInner(){
     '<div class="field"><label for="rAddress">' + esc(t('address')) + ' (' + esc(t('optional').toLowerCase()) + ')</label><textarea id="rAddress" data-bind="address" rows="3" autocomplete="street-address" placeholder="' + esc(t('addressPh')) + '">' + esc(R.address || '') + '</textarea></div>' +
     (R.attending ? '<div class="counts"><div class="field"><span class="label" id="lblAdults">' + esc(t('adultsLabel')) + '</span>' + stepperHtml('a', R.persons.length, 1, maxAdults(), 'lblAdults') + '</div>' +
       (maxKids() > 0 ? '<div class="field"><span class="label" id="lblKids">' + esc(t('kidsLabel')) + '</span>' + stepperHtml('k', R.kids || 0, 0, maxKids(), 'lblKids') + '</div>' : '') + '</div>' +
-      people + '<div class="field"><label for="rAll">' + esc(t('allergies')) + '</label><input id="rAll" data-bind="allergies" placeholder="' + esc(t('allergiesPh')) + '" value="' + esc(R.allergies) + '"></div>' : '') +
+      people + '<div class="field"><label for="rAll">' + esc(t('allergies')) + '</label><input id="rAll" data-bind="allergies" placeholder="' + esc(t('allergiesPh')) + '" value="' + esc(R.allergies) + '"></div>' + stayField() : '') +
     (R.attending !== null ? '<div class="field"><label for="rMsg">' + esc(t('message')) + '</label><textarea id="rMsg" data-bind="message" placeholder="' + esc(t('optional')) + '">' + esc(R.message) + '</textarea></div>' +
       '' : '') +
     '<div class="hp" aria-hidden="true"><label for="rWebsite">Website</label><input id="rWebsite" tabindex="-1" autocomplete="off"></div>' +
@@ -1653,6 +1752,13 @@ function rsvpInner(){
     '<div class="submit-row"><button class="btn" type="submit" id="rsvpSubmit">' + esc(S.editing ? t('save') : t('send')) + '</button>' +
       (S.editing ? '<button type="button" class="linkish" data-rsvp-cancel>' + esc(t('cancel')) + '</button>' : '') + '</div>' +
     '<p class="hint privacy">' + esc(t('privacy')) + '</p></form>';
+}
+function stayOpts(){ const st = S.content.settings; return tx(st.stayQ) ? ((st.stayOptions && st.stayOptions[S.lang]) || []) : []; }
+function stayField(){
+  const opts = stayOpts(), R = S.rsvp;
+  if (!opts.length) return '';
+  return '<div class="field" data-field="stay"><label for="rStay">' + esc(tx(S.content.settings.stayQ)) + '</label><select id="rStay" data-bind="stay"><option value="">' + esc(t('chooseMenu')) + '</option>' +
+    opts.map((o, k) => '<option value="' + k + '"' + (String(R.stay) === String(k) ? ' selected' : '') + '>' + esc(o) + '</option>').join('') + '</select></div>';
 }
 function refreshRsvp(){ const el = $('#rsvpCard'); if (el) { el.innerHTML = rsvpInner(); bindRsvp(); } }
 function bindRsvp(){
@@ -1692,6 +1798,7 @@ async function submitRsvp(e){
   if (!isEmail(R.email)) bad.push('email');
   const opts = (st.menuOptions && st.menuOptions[S.lang]) || [];
   if (R.attending && st.menuChoice && opts.length) R.persons.forEach((p, i) => { if (p.menu === '' || p.menu == null) bad.push('pm' + i); });
+  if (R.attending && stayOpts().length && (R.stay === '' || R.stay == null)) bad.push('stay');
   if (bad.length) {
     bad.forEach(k => { const f = $('[data-field="' + k + '"]'); if (f) f.classList.add('invalid'); });
     err.textContent = t('fixFields');
@@ -1703,7 +1810,7 @@ async function submitRsvp(e){
     id: R.id, name: R.name.trim(), email: R.email.trim(), phone: R.phone.trim(), address: (R.address || '').trim(), lang: S.lang, attending: R.attending,
     persons: R.attending ? R.persons.map((p, i) => ({ name: (p.name || (i === 0 ? R.name : '')).trim(), menu: p.menu === '' || p.menu == null ? -1 : Number(p.menu) })) : [],
     kids: R.attending ? (R.kids || 0) : 0,
-    allergies: R.attending ? R.allergies.trim() : '', message: R.message.trim()
+    allergies: R.attending ? R.allergies.trim() : '', stay: R.attending && stayOpts().length && R.stay !== '' && R.stay != null ? Number(R.stay) : -1, message: R.message.trim()
   };
   try {
     const res = await api('rsvp', { code: S.code, token: S.token, website: ($('#rWebsite') || {}).value || '', data, preview: S.preview, adminCode: S.preview ? S.admin.code : undefined });
@@ -1722,7 +1829,7 @@ async function submitRsvp(e){
 function fromServerRsvp(m){
   return { id: m.id, attending: !!m.attending, name: m.name || '', email: m.email || '', phone: m.phone || '', address: m.address || '',
     persons: (m.persons && m.persons.length ? m.persons : [{ name: m.name || '', menu: -1 }]).map(p => ({ name: p.name || '', menu: p.menu >= 0 ? String(p.menu) : '' })),
-    kids: Number(m.kids) || 0, allergies: m.allergies || '', message: m.message || '', wa: false };
+    kids: Number(m.kids) || 0, allergies: m.allergies || '', stay: m.stay >= 0 ? String(m.stay) : '', message: m.message || '', wa: false };
 }
 
 /* ---------- Geschenke ---------- */
@@ -1907,6 +2014,8 @@ function adminOverview(){
     '<div class="cols">' + releaseBox() + (std || contacts.length ? stdBox : '') +
     '<section class="box"><h2>Menüwahl</h2>' + (s.menu.length ? '<div class="bars">' + s.menu.map(m => '<div class="barrow"><span>' + esc(m.label) + '</span><div class="track"><div class="fill" style="width:' + Math.round(m.count / max * 100) + '%"></div></div><span class="n">' + m.count + '</span></div>').join('') + '</div>' : '<p>Noch keine Menüwahl.</p>') + '</section>' +
     '<section class="box"><h2>Allergien &amp; Unverträglichkeiten</h2>' + (s.allergies.length ? '<ul class="plain">' + s.allergies.map(a => '<li><b>' + esc(a.name) + ':</b> ' + esc(a.text) + '</li>').join('') + '</ul>' : '<p>Bisher keine Angaben.</p>') + '</section>' +
+    (st.stayOn && s.stay && s.stay.length ? '<section class="box"><h2>Übernachtung</h2><ul class="plain">' + s.stay.map(x => '<li><b>' + esc(x.label) + ':</b> ' + x.count + (x.count === 1 ? ' Anmeldung' : ' Anmeldungen') + ' · ' + x.persons + (x.persons === 1 ? ' Person' : ' Personen') + '</li>').join('') + '</ul>' +
+      '<p class="hint">Nur Zusagen. Die Antwort jedes Gasts steht im Reiter «Gäste».</p></section>' : '') +
     '<section class="box"><h2>Benachrichtigungen</h2><ul class="status">' + status.map(([c, txt]) => '<li><span class="dot ' + (c === 'ok' ? '' : c) + '"></span><span>' + esc(txt) + '</span></li>').join('') + '</ul>' +
       '<div class="actions"><button type="button" class="btn btn-sm" data-admin-test' + (test === 'busy' ? ' disabled' : '') + '>' + (test === 'busy' ? 'Wird gesendet …' : 'Test-Nachricht ans Team') + '</button></div>' +
       (test && test !== 'busy' ? '<ul class="plain">' + (test.results || []).map(r => '<li><b>' + esc(r.name) + ':</b> E-Mail ' + esc(r.email) + (r.whatsapp && r.whatsapp !== 'aus' && r.whatsapp !== '–' ? ', WhatsApp ' + esc(r.whatsapp) : '') + '</li>').join('') + '</ul>' : '') + '</section>' +
@@ -1932,15 +2041,16 @@ function adminGuests(){
         : '<tr><td colspan="5">Noch keine Kontakte.</td></tr>') + '</tbody></table></div>';
   }
   const list = d.guests.filter(g => (A.filter === 'all' || (A.filter === 'yes' ? g.attending : !g.attending)) && (!q || (g.name + ' ' + g.email + ' ' + g.namesMenu).toLowerCase().includes(q)));
+  const stayCol = !!(d.status && d.status.stayOn) || d.guests.some(g => g.stay);
   const chip = (k, l) => '<button type="button" class="chip" data-filter="' + k + '" aria-pressed="' + (A.filter === k) + '">' + l + '</button>';
   return '<div class="toolbar">' + chip('all', 'Alle Antworten (' + d.guests.length + ')') + chip('yes', 'Zusagen (' + d.stats.yes + ')') + chip('no', 'Absagen (' + d.stats.no + ')') + chip('contacts', 'Save the Date (' + contacts.length + ')') +
     '<label for="gSearch" class="sr-only">Suchen</label><input class="search" id="gSearch" placeholder="Name oder E-Mail suchen" value="' + esc(A.q) + '">' +
     '<button type="button" class="btn btn-sm btn-ghost" data-copy-guests>' + icon('copy') + 'Liste kopieren</button></div>' +
-    '<div class="table-wrap"><table><thead><tr><th>Name</th><th>Antwort</th><th>Erw.</th><th>Kinder</th><th>Personen &amp; Menü</th><th>Allergien</th><th>Kontakt</th><th>Nachricht</th></tr></thead><tbody>' +
+    '<div class="table-wrap"><table><thead><tr><th>Name</th><th>Antwort</th><th>Erw.</th><th>Kinder</th><th>Personen &amp; Menü</th><th>Allergien</th>' + (stayCol ? '<th>Übernachtung</th>' : '') + '<th>Kontakt</th><th>Nachricht</th></tr></thead><tbody>' +
     (list.length ? list.map(g => '<tr><td>' + esc(g.name) + '<span class="sub">' + (g.lang === 'it' ? 'Italienisch' : 'Deutsch') + '</span></td><td><span class="pill ' + (g.attending ? 'yes' : 'no') + '">' + (g.attending ? 'Zusage' : 'Absage') + '</span></td>' +
-      '<td class="num">' + (g.adults || 0) + '</td><td class="num">' + (g.kids || 0) + '</td><td>' + esc(g.namesMenu || '–') + '</td><td>' + esc(g.allergies || '–') + '</td>' +
+      '<td class="num">' + (g.adults || 0) + '</td><td class="num">' + (g.kids || 0) + '</td><td>' + esc(g.namesMenu || '–') + '</td><td>' + esc(g.allergies || '–') + '</td>' + (stayCol ? '<td>' + esc(g.attending && g.stay ? g.stay : '–') + '</td>' : '') +
       '<td><span class="sub">' + esc(g.email) + '</span>' + (g.phone ? '<span class="sub">' + esc(g.phone) + '</span>' : '') + (g.address ? '<span class="sub addr">' + esc(g.address).replace(/\n/g, ', ') + '</span>' : '') + '</td><td>' + esc(g.message || '') + '</td></tr>').join('')
-      : '<tr><td colspan="8">Keine Einträge.</td></tr>') + '</tbody></table></div>';
+      : '<tr><td colspan="' + (stayCol ? 9 : 8) + '">Keine Einträge.</td></tr>') + '</tbody></table></div>';
 }
 function adminMessage(){
   const A = S.admin, M = A.msg, d = A.data;
@@ -2041,7 +2151,7 @@ function bindAdmin(){
   const cg = $('[data-copy-guests]'); if (cg) cg.addEventListener('click', () => {
     const rows = A.filter === 'contacts'
       ? [['Name','E-Mail','Telefon','Postadresse','Sprache','Einladung','Angemeldet']].concat((A.data.contacts || []).map(c => [c.name, c.email, c.phone, String(c.address || '').replace(/\n/g, ', '), c.lang, c.invited || '', c.registered ? 'Ja' : 'Nein']))
-      : [['Name','Antwort','Erwachsene','Kinder','Personen & Menü','Allergien','E-Mail','Telefon','Postadresse','Sprache','Nachricht']].concat(A.data.guests.map(g => [g.name, g.attending ? 'Zusage' : 'Absage', g.adults || 0, g.kids || 0, g.namesMenu, g.allergies, g.email, g.phone, String(g.address || '').replace(/\n/g, ', '), g.lang, g.message]));
+      : [['Name','Antwort','Erwachsene','Kinder','Personen & Menü','Allergien','Übernachtung','E-Mail','Telefon','Postadresse','Sprache','Nachricht']].concat(A.data.guests.map(g => [g.name, g.attending ? 'Zusage' : 'Absage', g.adults || 0, g.kids || 0, g.namesMenu, g.allergies, g.attending ? (g.stay || '') : '', g.email, g.phone, String(g.address || '').replace(/\n/g, ', '), g.lang, g.message]));
     copyText(rows.map(r => r.map(v => String(v == null ? '' : v).replace(/[\t\n]/g, ' ')).join('\t')).join('\n'), 'Liste kopiert. In Excel oder Numbers einfügen.');
   });
   $$('[data-aud]').forEach(b => b.addEventListener('click', () => { A.msg.audience = b.dataset.aud; A.msg.confirm = false; render(); }));
